@@ -83,11 +83,11 @@ public class Listener {
 			// setup the socket address
 			InetSocketAddress address = new InetSocketAddress(11949);
 
-			// initialise the HTTPS server
+			// initialize the HTTPS server
 			httpsServer = HttpsServer.create(address, 0);
 			SSLContext sslContext = SSLContext.getInstance("TLS");
 
-			// initialise the keystore
+			// initialize the keystore
 			char[] pwd = "11111111".toCharArray();
 			KeyStore ks = KeyStore.getInstance("JKS");
 			InputStream fis = getClass().getClassLoader().getResourceAsStream("LocalSign_gps949_com.jks");
@@ -106,7 +106,7 @@ public class Listener {
 			httpsServer.setHttpsConfigurator(new HttpsConfigurator(sslContext) {
 				public void configure(HttpsParameters params) {
 					try {
-						// initialise the SSL context
+						// initialize the SSL context
 						SSLContext c = SSLContext.getDefault();
 						SSLEngine engine = c.createSSLEngine();
 						params.setNeedClientAuth(false);

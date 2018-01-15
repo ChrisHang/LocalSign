@@ -11,6 +11,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.internal.win32.OS;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -71,8 +72,10 @@ public class CertDlg extends Dialog {
 		Composite comp = (Composite) getButtonBar();
 		super.createButton(comp, IDialogConstants.OK_ID, "签名", false);
 		super.createButton(comp, IDialogConstants.CANCEL_ID, "取消", true);
-		this.getShell().setSize(this.getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		Shell myshell = this.getShell();
+
+		OS.SetWindowPos(myshell.handle, OS.HWND_TOPMOST, 0, 0, 0, 0, SWT.NULL);
+
 		myshell.setSize(myshell.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		Rectangle bounds = Display.getDefault().getPrimaryMonitor().getBounds();
 		Rectangle rect = myshell.getBounds();

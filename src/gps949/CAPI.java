@@ -62,6 +62,7 @@ public class CAPI {
 		sig.DN = cert.getSubjectDN().toString();
 		sig.SN = cert.getSerialNumber().toString(16);
 		sig.Signature = Base64.encode(encodedPKCS7).replaceAll("\\s+", "");
+		ac.alias = null;
 		return sig;
 	}
 

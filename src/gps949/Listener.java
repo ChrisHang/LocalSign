@@ -63,7 +63,7 @@ public class Listener {
 			t.getResponseHeaders().add("Access-Control-Allow-Methods", "POST");
 			t.getResponseHeaders().add("Access-Control-Allow-Headers", "content-type");
 			t.getResponseHeaders().add("contentType", "application/json; charset=utf-8");
-			t.sendResponseHeaders(200, response.getBytes().length);
+			t.sendResponseHeaders(200, response.getBytes("UTF-8").length);
 			OutputStream os = t.getResponseBody();
 			os.write(response.getBytes("UTF-8"));
 			os.close();

@@ -69,7 +69,7 @@ public class HostsWritter {
 		return updateFlag;
 	}
 
-	private void MoveOutFile(String srcPath) throws Exception {
+	public void MoveOutFile(String srcPath) throws Exception {
 		int index;
 		byte[] bytes = new byte[1024];
 		InputStream fis = getClass().getClassLoader().getResourceAsStream(srcPath);

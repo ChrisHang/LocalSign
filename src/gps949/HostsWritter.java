@@ -68,7 +68,7 @@ public class HostsWritter {
 		}
 		return updateFlag;
 	}
-
+//把项目内的文件写到外部
 	public void MoveOutFile(String srcPath) throws Exception {
 		int index;
 		byte[] bytes = new byte[1024];

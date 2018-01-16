@@ -16,8 +16,7 @@ public class LSEntry {
 
 	public static void main(String[] args) {
 
-		HostsWritter.update("LocalSign.gps949.com", "127.0.0.1");
-
+		new HostsWritter().update("LocalSign.gps949.com", "127.0.0.1");
 		Display display = new Display();
 
 		// 禁用掉了最大化按钮

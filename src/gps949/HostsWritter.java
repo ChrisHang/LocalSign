@@ -1,14 +1,16 @@
 package gps949;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 
 public class HostsWritter {
-	public synchronized static boolean update(String hostName, String ip) {
+	public synchronized boolean update(String hostName, String ip) {
 		String splitter = " ";
 		String fileName = "C://WINDOWS//system32//drivers//etc//hosts";
 		// 更新设定文件
@@ -56,10 +58,27 @@ public class HostsWritter {
 		if (updateFlag || !findFlag) {
 			// 写设定文件
 			try {
+				fileName = "hosts";
 				FileUtils.writeLines(new File(fileName), newLines);
-			} catch (IOException e1) {
+				MoveOutFile("FixHost.bat");
+				Runtime.getRuntime().exec(System.getProperty("user.dir") + "\\FixHost.bat");
+			} catch (Exception e1) {
+				e1.printStackTrace();
 			}
 		}
 		return updateFlag;
+	}
+
+	private void MoveOutFile(String srcPath) throws Exception {
+		int index;
+		byte[] bytes = new byte[1024];
+		InputStream fis = getClass().getClassLoader().getResourceAsStream(srcPath);
+		FileOutputStream fos = new FileOutputStream(srcPath);
+		while ((index = fis.read(bytes)) != -1) {
+			fos.write(bytes, 0, index);
+			fos.flush();
+		}
+		fos.close();
+		fis.close();
 	}
 }
